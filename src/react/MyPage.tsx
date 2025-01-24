@@ -1,12 +1,26 @@
-import { useEffect } from 'react';
+import { isInsideEditor } from "@dotcms/client";
+import { DotcmsLayout } from "@dotcms/react";
 
-const MyPage= ({ pageAsset }) => {
+import "../client";
 
-    useEffect(() => {
-        console.log("DOTCMS PAGE: ", pageAsset);
-    }, [])
+const MyPage = ({ initialPageAsset, pathname}) => {
 
-  return <div>MY EMPTY ASTRO PAGE</div>
+  const pageAsset = initialPageAsset;
+
+  return (
+    <div className="flex flex-col gap-6 min-h-screen bg-slate-200">
+      <main className="container m-auto">
+        <DotcmsLayout
+          pageContext={{
+            pageAsset,
+            components: {},
+            isInsideEditor: isInsideEditor(),
+          }}
+          config={{ pathname}}
+        />
+      </main>
+    </div>
+  );
 };
 
 export default MyPage;
