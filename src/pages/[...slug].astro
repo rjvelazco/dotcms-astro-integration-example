@@ -7,14 +7,14 @@ import Layout from '../layouts/Layout.astro';
 import Error from '../components/Error.astro';
 import MyPage from "../react/MyPage";
 
-const { slug: path = "/" } = Astro.params;
+const { slug = "/" } = Astro.params;
 const { searchParams } = Astro.url;
 
 let error: string = '';
 let pageAsset;
 
 try {
-	pageAsset = await client.page.get({ path, ...searchParams });
+	pageAsset = await client.page.get({ path: slug, ...searchParams });
 } catch(e) {
 	error = "Something has gone wrong..."
 }
@@ -24,6 +24,6 @@ try {
 	{error ? (
 		<Error error={error} />
 	) : (
-		<MyPage client:only="react" initialPageAsset={pageAsset} pathname={path} />
+		<MyPage client:only="react" initialPageAsset={pageAsset} pathname={slug} />
 	)}
 </Layout>

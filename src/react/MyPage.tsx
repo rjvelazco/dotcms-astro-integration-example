@@ -8,7 +8,7 @@ import useDotCms from "./hook/useDotCms";
 
 import "../client";
 
-const MyPage = ({ initialPageAsset, pathname}) => {
+const MyPage = ({ initialPageAsset, pathname }) => {
 
   const { pageAsset } = useDotCms(initialPageAsset);
 
