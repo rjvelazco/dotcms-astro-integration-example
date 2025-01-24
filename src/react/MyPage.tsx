@@ -1,7 +1,9 @@
 import { isInsideEditor } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
-import Banner from "./content-types-components/Banner";
+import Banner from "./content-types/Banner";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 import "../client";
 
@@ -11,6 +13,7 @@ const MyPage = ({ initialPageAsset, pathname}) => {
 
   return (
     <div className="flex flex-col gap-6 min-h-screen bg-slate-200">
+      {pageAsset?.layout.header && <Header />}
       <main className="container m-auto">
         <DotcmsLayout
           pageContext={{
@@ -23,6 +26,7 @@ const MyPage = ({ initialPageAsset, pathname}) => {
           config={{ pathname }}
         />
       </main>
+      {pageAsset?.layout.footer && <Footer />}
     </div>
   );
 };
