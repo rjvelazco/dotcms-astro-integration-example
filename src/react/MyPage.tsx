@@ -1,6 +1,8 @@
 import { isInsideEditor } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
+import Banner from "./content-types-components/Banner";
+
 import "../client";
 
 const MyPage = ({ initialPageAsset, pathname}) => {
@@ -13,10 +15,12 @@ const MyPage = ({ initialPageAsset, pathname}) => {
         <DotcmsLayout
           pageContext={{
             pageAsset,
-            components: {},
+            components: {
+              Banner: Banner
+            },
             isInsideEditor: isInsideEditor(),
           }}
-          config={{ pathname}}
+          config={{ pathname }}
         />
       </main>
     </div>
