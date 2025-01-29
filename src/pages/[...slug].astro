@@ -3,27 +3,33 @@ import "../styles/global.css";
 
 // IMPORTS
 import { client } from "../client";
-import Layout from '../layouts/Layout.astro';
-import Error from '../components/Error.astro';
+import Layout from "../layouts/Layout.astro";
+import Error from "../components/Error.astro";
 import MyPage from "../react/MyPage";
 
 const { slug = "/" } = Astro.params;
 const { searchParams } = Astro.url;
 
-let error: string = '';
+let error: string = "";
 let pageAsset;
 
 try {
-	pageAsset = await client.page.get({ path: slug, ...searchParams });
-} catch(e) {
-	error = "Something has gone wrong..."
+  pageAsset = await client.page.get({ path: slug, ...searchParams });
+} catch (e) {
+  error = "Something has gone wrong...";
 }
 ---
 
 <Layout>
-	{error ? (
-		<Error error={error} />
-	) : (
-		<MyPage client:only="react" initialPageAsset={pageAsset} pathname={slug} />
-	)}
+  {
+    error ? (
+      <Error error={error} />
+    ) : (
+      <MyPage
+        client:only="react"
+        initialPageAsset={pageAsset}
+        pathname={slug}
+      />
+    )
+  }
 </Layout>

@@ -1,16 +1,15 @@
 import { isInsideEditor } from "@dotcms/client";
 import { DotcmsLayout } from "@dotcms/react";
 
+import useDotCMS from "./hook/useDotCMS";
 import Banner from "./content-types/Banner";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import useDotCms from "./hook/useDotCms";
 
 import "../client";
 
 const MyPage = ({ initialPageAsset, pathname }) => {
-
-  const { pageAsset } = useDotCms(initialPageAsset);
+  const { pageAsset } = useDotCMS(initialPageAsset);
 
   return (
     <div className="flex flex-col gap-6 min-h-screen bg-slate-200">
@@ -20,7 +19,7 @@ const MyPage = ({ initialPageAsset, pathname }) => {
           pageContext={{
             pageAsset,
             components: {
-              Banner: Banner
+              Banner: Banner,
             },
             isInsideEditor: isInsideEditor(),
           }}
